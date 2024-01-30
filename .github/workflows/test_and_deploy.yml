@@ -10,6 +10,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: List current commit messages
+        run: |
+          git log ${{ github.event.head_commit.sha }} --pretty=format:%s
       - name: Install dependencies
         run: npm ci
       - name: Run tests
