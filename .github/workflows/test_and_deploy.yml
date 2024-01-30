@@ -12,7 +12,10 @@ jobs:
           node-version: 20
       - name: List current commit messages
         run: |
-          echo "${{ github.event.commits[0].message }}"
+          echo "Current commits:"
+          for commit in "${{ github.event.commits }}"; do
+            echo "  ${commit.id} by ${commit.author} on ${commit.date}"
+          done
       - name: Install dependencies
         run: npm ci
       - name: Run tests
